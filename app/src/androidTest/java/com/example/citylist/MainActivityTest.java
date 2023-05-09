@@ -76,4 +76,36 @@ public class MainActivityTest {
         Espresso.pressBack(); //Back button
     }
 
+    @Test
+    public void TestActions()
+    {
+        onView(withId(R.id.button_add)).perform(click()); //Click add button to add a city to the list
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Edmonton")); //Type a city name
+        onView(withId(R.id.button_confirm)).perform(click()); //Confirm the city name and add to the list
+        Espresso.pressBack();
+
+        onView(withId(R.id.button_add)).perform(click()); //Click add button to add a city to the list
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Dhaka")); //Type a city name
+        onView(withId(R.id.button_confirm)).perform(click()); //Confirm the city name and add to the list
+        Espresso.pressBack();
+
+        onView(withId(R.id.button_add)).perform(click()); //Click add button to add a city to the list
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Khulna")); //Type a city name
+        onView(withId(R.id.button_confirm)).perform(click()); //Confirm the city name and add to the list
+        Espresso.pressBack();
+
+        onView(withId(R.id.button_add)).perform(click()); //Click add button to add a city to the list
+        onView(withId(R.id.editText_name)).perform(ViewActions.typeText("Rajshahi")); //Type a city name
+        onView(withId(R.id.button_confirm)).perform(click()); //Confirm the city name and add to the list
+        Espresso.pressBack();
+
+        onData(anything()).inAdapterView(withId(R.id.city_list)).atPosition(2).perform(click());
+
+        onView(withId(R.id.show)).check(matches(isDisplayed()));
+        onView(withText("Khulna")).check(matches(isDisplayed()));
+        onView(withId(R.id.button)).perform(click());
+        onView(withId(R.id.main)).check(matches(isDisplayed()));
+
+    }
+
 }
